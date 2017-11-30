@@ -10,7 +10,7 @@ import (
 
 func TestBowling(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Bowling Suite")
+	RunSpecs(t, "Integration Suite")
 }
 
 var (

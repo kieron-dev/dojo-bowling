@@ -10,7 +10,7 @@ import (
 )
 
 var _ = Describe("Bowling Scores", func() {
-	PIt("runs successfully with a valid arg", func() {
+	It("runs successfully with a valid arg", func() {
 		command := exec.Command(cmd, "9-9-9-")
 		session, err := gexec.Start(command, GinkgoWriter, GinkgoWriter)
 		Expect(err).NotTo(HaveOccurred())
