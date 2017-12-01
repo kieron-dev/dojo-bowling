@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/kieron-pivotal/bowling/bowling"
+	"github.com/dojo-bowling/bowling"
 )
 
 func main() {

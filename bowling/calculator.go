@@ -32,3 +32,29 @@ func Score(throws string) int {
 	}
 	return sum
 }
+
+func ParseFrames(throws string) []Frame {
+	frames := []Frame{}
+	for i := 0; i < len(throws); i++ {
+		if throws[i] == 'X' {
+			frames = append(frames, Frame{Throw1: 10, FrameType: Strike})
+			continue
+		}
+
+		first, _ := strconv.Atoi(string(throws[i]))
+		i++
+		var next int
+
+		frameType := Regular
+		var newFrame Frame
+		if throws[i] == '/' {
+			next = 10 - first
+			frameType = Spare
+		} else {
+			next, _ = strconv.Atoi(string(throws[i]))
+		}
+		newFrame = Frame{Throw1: first, Throw2: next, FrameType: frameType}
+		frames = append(frames, newFrame)
+	}
+	return frames
+}
