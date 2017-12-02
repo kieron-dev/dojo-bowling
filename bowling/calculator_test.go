@@ -13,6 +13,7 @@ var _ = Describe("Calculator", func() {
 		Expect(bowling.Score("2-")).To(Equal(2))
 		Expect(bowling.Score("12")).To(Equal(3))
 		Expect(bowling.Score("123-")).To(Equal(6))
+		Expect(bowling.Score("X12")).To(Equal(16))
 		Expect(bowling.Score("XXXXXXXXXXXX")).To(Equal(300))
 		Expect(bowling.Score("9-9-9-9-9-9-9-9-9-9-")).To(Equal(90))
 		Expect(bowling.Score("5/5/5/5/5/5/5/5/5/5/5")).To(Equal(150))
