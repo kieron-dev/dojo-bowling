@@ -51,15 +51,19 @@ func ParseFrames(throws string) []Frame {
 
 		frameType := Regular
 		var newFrame Frame
-		if throws[1] == '/' {
-			next = 10 - first
-			frameType = Spare
+		if len(throws) > 1 {
+			if throws[1] == '/' {
+				next = 10 - first
+				frameType = Spare
+			} else {
+				next, _ = strconv.Atoi(string(throws[1]))
+			}
+			throws = throws[2:]
 		} else {
-			next, _ = strconv.Atoi(string(throws[1]))
+			throws = ""
 		}
 		newFrame = Frame{Throw1: first, Throw2: next, FrameType: frameType}
 		frames = append(frames, newFrame)
-		throws = throws[2:]
 	}
 	return frames
 }
