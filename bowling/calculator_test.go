@@ -1,7 +1,7 @@
 package bowling_test
 
 import (
-	"github.com/dojo-bowling/bowling"
+	"github.com/kieron-pivotal/dojo-bowling/bowling"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
