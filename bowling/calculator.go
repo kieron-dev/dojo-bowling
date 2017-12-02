@@ -19,15 +19,19 @@ type Frame struct {
 }
 
 func Score(throws string) int {
+	frames := ParseFrames(throws)
 	var sum int
-	for i := 0; i < len(throws); i++ {
-		if i < len(throws)-1 && throws[i+1] == '/' {
-			i++
-			n, _ := strconv.Atoi(string(throws[i+1]))
-			sum += 10 + n
-		} else {
-			n, _ := strconv.Atoi(string(throws[i]))
-			sum += n
+	for i := 0; i < 10 && i < len(frames); i++ {
+		sum += frames[i].Throw1 + frames[i].Throw2
+		if frames[i].FrameType == Spare {
+			sum += frames[i+1].Throw1
+		} else if frames[i].FrameType == Strike {
+			sum += frames[i+1].Throw1
+			if frames[i+1].FrameType == Strike {
+				sum += frames[i+2].Throw1
+			} else {
+				sum += frames[i+1].Throw2
+			}
 		}
 	}
 	return sum
@@ -35,26 +39,27 @@ func Score(throws string) int {
 
 func ParseFrames(throws string) []Frame {
 	frames := []Frame{}
-	for i := 0; i < len(throws); i++ {
-		if throws[i] == 'X' {
+	for len(throws) > 0 {
+		if throws[0] == 'X' {
 			frames = append(frames, Frame{Throw1: 10, FrameType: Strike})
+			throws = throws[1:]
 			continue
 		}
 
-		first, _ := strconv.Atoi(string(throws[i]))
-		i++
+		first, _ := strconv.Atoi(string(throws[0]))
 		var next int
 
 		frameType := Regular
 		var newFrame Frame
-		if throws[i] == '/' {
+		if throws[1] == '/' {
 			next = 10 - first
 			frameType = Spare
 		} else {
-			next, _ = strconv.Atoi(string(throws[i]))
+			next, _ = strconv.Atoi(string(throws[1]))
 		}
 		newFrame = Frame{Throw1: first, Throw2: next, FrameType: frameType}
 		frames = append(frames, newFrame)
+		throws = throws[2:]
 	}
 	return frames
 }
