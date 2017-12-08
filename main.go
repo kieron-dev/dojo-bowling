@@ -13,5 +13,5 @@ func main() {
 		fmt.Fprintln(os.Stderr, usage)
 		os.Exit(1)
 	}
-	fmt.Println(bowling.Score(os.Args[1]))
+	fmt.Println(bowling.NewGame(os.Args[1]).Score())
 }
