@@ -31,12 +31,12 @@ var _ = Describe("Calculator", func() {
 			bowling.RegularFrame{Throw1: 0, Throw2: 4},
 		}))
 		Expect(bowling.Throws2Frames("3/")).To(Equal([]bowling.Frame{
-			bowling.SpareFrame{Throw1: 3},
+			bowling.SpareFrame{Throw: 3},
 		}))
 
 		Expect(bowling.Throws2Frames("225/")).To(Equal([]bowling.Frame{
 			bowling.RegularFrame{Throw1: 2, Throw2: 2},
-			bowling.SpareFrame{Throw1: 5},
+			bowling.SpareFrame{Throw: 5},
 		}))
 
 		Expect(bowling.Throws2Frames("X")).To(Equal([]bowling.Frame{

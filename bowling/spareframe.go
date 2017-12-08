@@ -3,13 +3,13 @@ package bowling
 import "strconv"
 
 type SpareFrame struct {
-	Throw1 int
+	Throw int
 }
 
 func NewSpare(throw1 string) Frame {
 	score, _ := strconv.Atoi(throw1)
 	return SpareFrame{
-		Throw1: score,
+		Throw: score,
 	}
 }
 
@@ -19,7 +19,7 @@ func (f SpareFrame) GetScore(g *Game) int {
 }
 
 func (f SpareFrame) GetSpareAddition() int {
-	return f.Throw1
+	return f.Throw
 }
 
 func (f SpareFrame) GetStrikeAddition(g *Game) int {
